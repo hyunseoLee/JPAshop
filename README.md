@@ -29,7 +29,7 @@
   * 주문 서비스 개발
   * 주문 기능 테스트
   * 주문 검색 기능 개발
-    
+     
 * 웹 계층 개발
   * 홈 화면과 레이아웃
   * 회원 등록
@@ -39,3 +39,16 @@
   * 상품 수정
   * 변경 감지와 병합(merge) 상품 주문
   * 주문 목록 검색, 취소
+
+
+## 환경설정
+https://start.spring.io 
+* Project : Gradle 
+* Language : Java 
+* Spring Boot : 2.6.4
+* Dependencies 
+ * Spring Web Starter 
+ * Thymeleaf 
+ * H2 Database 
+ * Lombok 
+ * Spring Data JPA 
