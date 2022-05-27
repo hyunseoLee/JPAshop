@@ -108,10 +108,34 @@ https://start.spring.io
 > [https://hyun-1200.tistory.com/12?category=1009045]
 * 회원 도메인 : Member
 * 회원 Repository: MemberRepository
- * 저장 : save 
- * 회원 (단건/다건)조회 : findOne, findAll
+  * 저장 : save 
+  * 회원 (단건/다건)조회 : findOne, findAll
 * 회원 Service : MemberService 
- * 생성자 주입
+  * 생성자 주입. [https://hyun-1200.tistory.com/31?category=1009044]
+ ```java
+ //필드 주입 - 외부에서 변경이 불가하므로 테스트하기 힘들다는 단점.
+ @Autowired
+ private MemberRepository memberRepository;
+ ```
+ 
+ ```java
+ // 생성자주입- (생성자가 하나인 경우, autowired 생략가능) 
+  @Autowired
+    private void MemberService(MemberRepository memberRepository){
+        this.memberRepository= memberRepository;
+    }
+ ```
+ 
+ ```java
+ // lombok 의 아래 에노테이션 사용하면 final이 붙은 애들만 생성자 자동 생성 
+ // 이렇게 의존주입 생성하는게 최적의 코드 
+ @RequiredArgsConstructor 
+   public class MemberService {
+
+    private final MemberRepository memberRepository;
+    ... 
+    } 
+ ```
 * 회원 기능 test
 
   * @Runwith(SpringRunner.class): 스프링과 테스트 통합
