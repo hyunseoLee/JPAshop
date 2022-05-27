@@ -27,7 +27,6 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-
     /*상품 조회 (단건)*/
     public Item findOne(Long itemId){
         return itemRepository.findOne(itemId);
