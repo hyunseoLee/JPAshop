@@ -17,12 +17,14 @@ import javax.persistence.EntityManager;
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Transactional
+@Transactional  // rollback 가능하도록
 public class MemberSerivceTest {
 
     @Autowired MemberService memberService;
     @Autowired MemberRepository memberRepository;
     @Autowired EntityManager em;
+
+
 
     @Test
     @Rollback(false)
@@ -49,6 +51,13 @@ public class MemberSerivceTest {
 
         //when
         memberService.join(member1);
+        /*
+        try{
+            memberService.join(member2); // 예외발생해야함
+        }catch(IllegalStateException e){
+            return;
+        }
+         */
         memberService.join(member2); // 예외발생해야함
 
         //then
