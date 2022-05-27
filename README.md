@@ -111,5 +111,26 @@ https://start.spring.io
  * 회원 (단건/다건)조회 : findOne, findAll
 * 회원 Service : MemberService 
  * 생성자 주입
+* 회원 기능 test
+
+  * @Runwith(SpringRunner.class): 스프링과 테스트 통합
+  * @SpringBootTest : 스프링 부트 띄우고 테스트(이게 없으면 @Autowired 다 실패)
+  *  @Transactional : 반복 가능한 테스트 지원, 각각의 테스트를 실행할 때마다 트랜잭션을 시작하고 테스트가 끝나면 트랜잭션을 강제로 롤백 (이 어노테이션이 테스트 케이스에서 사용될 때만 롤백)
+  *  @Transactional 에노테이션 사용하면 데이터베이스에 데이터가 저장안되고 rollback이 되기때문에, 직접 확인해보고 싶다면 @Rollback(false) 를 사용하면 된다. 
+
+```java
+try{
+            memberService.join(member2); // 예외발생해야함
+        }catch(IllegalStateException e){
+            return;
+        }
+```
+* try-catch 문 대신 에노테이션에 발생될 exception을 적어줘서 사용할 수 있다. 
+```java
+@Test(expected = IllegalStateException.class)
+```
+
+ * test할때  WAS 위에 메모리DB 사용하는 법
+   * test>resource>application.yml 의 spring 관련 내용을 모두 주석처리하면 스프링부트에서 자동으로 메모리db를 실행시킨다.
 
 
