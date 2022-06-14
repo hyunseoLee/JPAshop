@@ -36,7 +36,7 @@ public class OrderItem {
         return orderItem;
     }
      //=== 비즈니스 로직 ===//
-    public void calcel() {
+    public void cancel(){
         getItem().addStock(count); // 재고수량을 원복해준다.
     }
 
