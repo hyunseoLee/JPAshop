@@ -15,7 +15,7 @@ public class Order {
 
     @Id @GeneratedValue
     @Column(name="order_id")
-    private String id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY) // 다대일
     @JoinColumn(name="member_id")
