@@ -40,6 +40,7 @@ public class OrderItem {
         orderItem.setOrderPrice(orderPrice);
         orderItem.setCount(count);
 
+        // 주문수량만큼 재고를 감소한다.
         item.removeStock(count);
         return orderItem;
     }
