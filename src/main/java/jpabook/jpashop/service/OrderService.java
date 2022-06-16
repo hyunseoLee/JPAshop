@@ -8,6 +8,7 @@ import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.repository.ItemRepository;
 import jpabook.jpashop.repository.MemberRepository;
 import jpabook.jpashop.repository.OrderRepository;
+import jpabook.jpashop.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,15 +39,12 @@ public class OrderService {
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
         // orderItem을 생성하지 못하도록 protected로 설정
         // new orderItem();
-
         //주문생성
         Order order = Order.createOrder(member, delivery, orderItem);
-
         //주문 저장
         orderRepository.save(order);
 
         return order.getId();
-
     }
 
     /* 취소 */
@@ -60,8 +58,8 @@ public class OrderService {
     }
 
     /* 검색 */
-//    public List<Order> findOrders(OrderSearch orderSearch){
-//        return orderRepository.findAll(orderSearch);
-//    }
+   public List<Order> findOrders(OrderSearch orderSearch){
+        return orderRepository.findAllByString(orderSearch);
+    }
 
 }

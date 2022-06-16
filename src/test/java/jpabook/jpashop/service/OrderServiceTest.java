@@ -36,21 +36,18 @@ public class OrderServiceTest {
         //given
         Member member = getMember();
         Item book = getItem("bookA", 10000, 10);
-
         int orderCount = 3;
-        //when
 
+        //when
         Long orderId = orderService.order(member.getId(), book.getId(), orderCount);
         Order getOrder = orderRepository.findOne(orderId);
 
         //then
-        //assertEquals(orderId, orderRepository.findOne(orderId) );
 
         assertEquals("상품주문시 상태는 ORDERS", OrderStatus.ORDER, getOrder.getStatus());
         assertEquals("주문한 상품 수가 일치해야한다", 1, getOrder.getOrderItems().size());
         assertEquals("주문가격은 가격*수량이다", 10000*orderCount, getOrder.getTotalPrice());
         assertEquals("주문수량만큼 재고가 줄어야한다", 7, book.getStockQuantity());
-
     }
 
 
@@ -74,7 +71,6 @@ public class OrderServiceTest {
     @Test
     public void 주문취소() throws Exception
     {
-        //cancelOrder(Long orderId)
         //given
         Member member = getMember();
         em.persist(member);
@@ -92,7 +88,6 @@ public class OrderServiceTest {
 
         Assert.assertEquals("주문 취소한 수량만큼 다시 증가되는지 확인", 5, item.getStockQuantity());
         assertEquals("주문 취소시 상태는 CANCEL", OrderStatus.CANCLE, getOrder.getStatus());
-
     }
 
     // command+ option + P : 매개변수로 설정 가능
