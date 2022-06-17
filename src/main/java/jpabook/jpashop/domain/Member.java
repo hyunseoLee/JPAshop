@@ -14,6 +14,11 @@ public class Member {
     @Column(name ="member_id")
     private Long id ;
 
+    //나이 추가
+    private int age;
+    //성별 추가
+    private int gender;
+
     private String name;
 
     @Embedded

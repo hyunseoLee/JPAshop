@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -48,6 +50,30 @@ public class MemberController {
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
         return "members/memberList";
+    }
+
+    /*회원 수정 기능 추가*/
+    @GetMapping("/members/{memberId}/edit")
+    public String updateMemberForm(@PathVariable("memberId") Long memberId,  Model model){
+        Member member = memberService.findOne(memberId);
+        MemberForm form= new MemberForm();
+
+        form.setName(member.getName());
+        form.setAge(member.getAge());
+        form.setGender(member.getGender());
+        form.setCity(member.getAddress().getCity());
+        form.setStreet(member.getAddress().getStreet());
+        form.setZipcode(member.getAddress().getZipcode());
+
+        model.addAttribute("form",form);
+
+        return "/members/updateMemberForm";
+    }
+
+    @PostMapping("/members/{memberId}/edit")
+    public String updateMember(@ModelAttribute("form") MemberForm form,  @PathVariable("memberId") Long memberId ){
+
+        return "redirect:/members";
     }
 
 }

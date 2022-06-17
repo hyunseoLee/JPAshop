@@ -21,6 +21,43 @@
 
         </div>
         <div class="form-group">
+            <label th:for="age">나이</label>
+            <input type="text" th:field="*{age}" class="form-control" placeholder="나이를 입력하세요">
+        </div>
+
+
+        <div class="form-group">
+             <label th:for="gender">성별</label>
+            <div class ="custom-control custom-radio">
+                <input type="radio" name="jb-radio" id="jb-radio-1" class="form-group custom-control-input">
+                <label class="custom-control-label" for="jb-radio-1">남</label>
+             </div>
+            <div class ="custom-control custom-radio">
+                <input type="radio" name="jb-radio" id="jb-radio-2" class="form-group custom-control-input">
+                <label class="custom-control-label" for="jb-radio-2">여</label>
+            </div>
+        </div>
+
+        <!--
+        <div class="custom-control custom-radio">
+            <label th:for="gender">성별</label>
+            <input type="radio" th:field="*{gender}" class="form-group custom-control-input">
+                <label class="custom-control-label" th:for="gender" >남</label>
+
+
+        </div>
+-->
+        <!--
+        <div class="form-group">
+            <label th:for="gender">성별</label>
+            <div class="custom-control custom-radio">
+                <input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input">
+                <label class="custom-control-label" for="jb-radio-1">Radio Button 1</label>
+            </div>
+            <input type="text" th:field="*{gender}" class="form-control" placeholder="성별을 입력하세요">
+        </div>
+        -->
+        <div class="form-group">
             <label th:for="city">도시</label>
             <input type="text" th:field="*{city}" class="form-control" placeholder="도시를 입력하세요">
         </div>

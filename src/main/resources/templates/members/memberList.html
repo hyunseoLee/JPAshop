@@ -11,18 +11,26 @@
             <tr>
                 <th>#</th>
                 <th>이름</th>
+                <th>나이</th>
+                <th>성별</th>
                 <th>도시</th>
                 <th>주소</th>
                 <th>우편번호</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="member : ${members}">
                 <td th:text="${member.id}"></td>
                 <td th:text="${member.name}"></td>
+                <td th:text="${member.age}"></td>
+                <td th:text="${member.gender}"></td>
                 <td th:text="${member.address?.city}"></td>
                 <td th:text="${member.address?.street}"></td>
                 <td th:text="${member.address?.zipcode}"></td>
+                <td>
+                    <a href="#" th:href="@{/members/{id}/edit (id=${member.id})}" class="btn btn-primary" role="button">수정</a>
+                </td>
             </tr>
             </tbody>
         </table>
